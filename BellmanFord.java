@@ -13,7 +13,7 @@ public class BellmanFord {
     // The main function that finds shortest distances from source
     // to all other vertices using Bellman-Ford algorithm.  The
     // function also detects negative weight cycle
-    private void bellmanFord(int[][] matrix, int source) {
+    private static void bellmanFord(int[][] matrix, int source) {
         // O(VE)
         int n = matrix.length;
 
