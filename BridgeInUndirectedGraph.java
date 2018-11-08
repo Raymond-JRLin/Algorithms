@@ -45,7 +45,7 @@ public class BridgeInUndirectedGraph {
         }
         boolean visited[] = new boolean[n];
         int disc[] = new int[n]; // dicover time
-        int low[] = new int[n];
+        int low[] = new int[n]; // indicates whether there's some other early node (based on disc) that can be visited by the subtree rooted with that node
         int parent[] = new int[n];
         Arrays.fill(parent, -1);
 
@@ -84,8 +84,10 @@ public class BridgeInUndirectedGraph {
                 // If the lowest vertex reachable from subtree
                 // under v is below u in DFS tree, then u-v is
                 // a bridge
-                if (low[next] > disc[curr])
+                if (low[next] > disc[curr]) {
+                    // 下一个点的 low value 大于现在的点  disc， 意味着除了现在的点以外， 没有任何比现在的点更早的其他点与下一个点相连， 那么连接现在的点和下一个点的 edge 就是 bridge
                     result.add(new int[]{curr, next});
+                }
             } else if (next != parent[curr]) {
                 // Update low value of u for parent function calls.
                 low[curr] = Math.min(low[curr], disc[next]);
