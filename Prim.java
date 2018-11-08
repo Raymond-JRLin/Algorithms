@@ -26,10 +26,87 @@ public class Prim {
                                     {6, 8, MAX, 0, 9},
                                     {MAX, 5, 7, 9, 0}};
         System.out.println(method1(graph));
+        System.out.println(method2(graph));
+    }
+
+    private static int method3(int[][] matrix) {
+        // use PriorityQueue, I think this's correct
+        // O((E + V)LogV) time
+        // ref: https://www.hackerearth.com/zh/practice/algorithms/graphs/minimum-spanning-tree/tutorial/
+        int n = matrix.length; // # vertices
+        // construct adjacent list
+        List<List<Integer>> adj = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            adj.add(new ArrayList<>());
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == j) {
+                    continue;
+                }
+                if (matrix[i][j] != Integer.MAX_VALUE) {
+                    adj.get(i).add(j);
+                    adj.get(j).add(i);
+                }
+            }
+        }
+        int[] key = new int[n];
+        int[] prev = new int[n];
+        boolean[] isMST = new boolean[n];
+        // initialization: pick 0 as starting point
+        Arrays.fill(key, Integer.MAX_VALUE);
+        key[0] = 0;
+        Arrays.fill(prev, -1);
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        pq.offer(new Pair(0, 0, -1));
+        int result = 0;
+        while (!pq.isEmpty()) {
+            Pair curr = pq.poll();
+            if (isMST[curr.vertex]) {
+                continue;
+            }
+            isMST[curr.vertex] = true;
+            result += curr.key;
+            prev[curr.vertex] = curr.prev;
+            key[curr.vertex] = curr.key;
+            for (int next : adj.get(curr.vertex)) {
+                if (isMST[next]) {
+                    continue;
+                }
+                pq.offer(new Pair(next, matrix[curr.vertex][next], curr.vertex));
+            }
+        }
+        // print edges and return the total weight/cost for this MST
+
+        System.out.println("from   to   weight");
+        for (int i = 1; i < n; i++) {
+            if (prev[i] != -1) {
+                System.out.println(prev[i] + "  ->  " + i + "\t" + key[i]);
+            }
+        }
+        return result;
+    }
+    private static class Pair implements Comparable<Pair> {
+        private int vertex;
+        private int key;
+        private int prev;
+
+        public Pair(int v, int k, int p) {
+            this.vertex = v;
+            this.key = k;
+            this.prev = p;
+        }
+
+        @Override
+        public int compareTo(Pair o2){
+            return Integer.compare(this.key, o2.key);
+        }
     }
 
     private static int method2(int[][] matrix) {
-        // O((E + V)LogV) time 
+        // use PriorityQueue, not sure if this's correct lol
+        // O((E + V)LogV) time
         int n = matrix.length; // # vertices
         // construct adjacent list
         List<List<Integer>> adj = new ArrayList<>();
