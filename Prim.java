@@ -27,6 +27,7 @@ public class Prim {
                                     {MAX, 5, 7, 9, 0}};
         System.out.println(method1(graph));
         System.out.println(method2(graph));
+        System.out.println(method3(graph));
     }
 
     private static int method3(int[][] matrix) {
