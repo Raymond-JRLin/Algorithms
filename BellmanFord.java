@@ -49,7 +49,7 @@ public class BellmanFord {
                 for (int next : adj.get(from)) {
                     int weight = matrix[from][next];
                     if (dist[from] != Integer.MAX_VALUE && dist[from] + weight < dist[next]) {
-                        dist[next] = dist[from] + weight;
+                        System.out.println("Graph has negative weight!");
                     }
                 }
             }
