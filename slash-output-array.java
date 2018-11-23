@@ -5,7 +5,7 @@ public class SlashOutputArray {
         }
         int col = arr[0].length;
         int row = arr.length;
-        for( int k = 0 ; k < k < row + col - 1 ; k++ ) {
+        for( int k = 0 ; k < row + col - 1 ; k++ ) {
             //k代表有多少行输出
             // int sum = k;
             for( int j = 0 ; j < col ; j++ ) {
@@ -26,7 +26,7 @@ public class SlashOutputArray {
         }
         int row = arr.length;
         int col = arr[0].length;
-        for (int k = 0; k < k < row + col - 1; k++) {
+        for (int k = 0; k < row + col - 1; k++) {
             //k代表有多少行输出
             int diff = col - k - 1; //同一行的元素，行下标和列下标的差相等
             for (int j = 0; j < col; j++) {
@@ -67,7 +67,7 @@ public class SlashOutputArray {
         slash(arr1);
         slash(arr2);
         slash(arr3);
-        
+
         backslash(arr1);
         backslash(arr2);
         backslash(arr3);
