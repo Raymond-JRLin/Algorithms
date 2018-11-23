@@ -19,10 +19,8 @@ public class WordExtension {
             if (i - left > 2) {
                 result.add(new int[]{left, i - 1});
                 i--;
-                left = i;
-            } else {
-                left = i;
             }
+            left = i;
         }
         return result;
     }
