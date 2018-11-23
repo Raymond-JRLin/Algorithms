@@ -1,3 +1,12 @@
+/*
+给一个矩阵，按顺序输出矩阵中的元素,比如
+
+1 2 3
+4 5 6
+7 8 9
+要求输出 1 4 2 7 5 3 8 6 9，就是斜着往上输出。
+*/
+
 public class SlashOutputArray {
     private static void slash(int[][] arr) {
         if (arr == null) {
