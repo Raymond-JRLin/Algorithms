@@ -4,6 +4,8 @@ when a letter repeated >= three times it's considered a word extension. eg:lll a
 return the start and end index of the word extension
 input string: hellloooo return (2,4) (5,8)
 return 一个arrayList
+
+Follow up: LC 809
 */
 
 import java.util.*;
